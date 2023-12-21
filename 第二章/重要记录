@@ -1,0 +1,33 @@
+页面源代码里面查找数据：ctrl+f
+整行选中ctrl+c
+re.compile()里面最好是’‘，因为html文件里面一般都是“”
+html文件里面匹配内容从最上面开始写，中间的用.*?
+空白处理,哪个前面有空白就将哪个进行。strip
+it.group("year").strip()
+由于数字前面有空白所以导致我们很多时候直接\d+无法直接匹配到数字，所以一般我们直接.*?,就可以了
+一次注释多行
+使用ctrl +/ 注释
+打开文件的两种格式第一种为正常html，第二种为csv文件
+----------------------------------------------------------------------------------------
+#with open("firefox1.html", mode="w", encoding="utf-8") as f:
+#f.write(content)
+#f.close()
+--------------------------------------------------------------
+f=open("data.csv", mode="w", encoding="utf-8")
+#csvwriter再往里面写文件就会这么写了
+csvwriter=csv.writer(f)
+for it in result:
+    # print(it.group("name"))
+    # print(it.group("score"))
+    # print(it.group("year").strip())
+    # print(it.group("num"))
+    #字典形式全部出来
+    dic=it.groupdict()
+    #year单独处理，因为之前看了，它前面有空格
+    dic['year']=dic['year'].strip()
+    #写进去
+    csvwriter.writerow(dic.values())
+f.close()
+------------------------------------------------------------------
+去掉安全验证
+resp=requests.get(domain,verify=False)
