@@ -1,0 +1,23 @@
+split() 和 rsplit() 是 Python 字符串处理中用于分割字符串的方法，它们有一些区别：
+
+分割方向：
+
+split() 方法从左到右分割字符串。
+rsplit() 方法从右到左分割字符串。
+分割次数控制：
+
+split() 可以通过一个可选的参数来控制分割的次数，指定分割几次（默认为分割所有匹配项）。
+rsplit() 同样可以通过一个可选参数来控制分割的次数，但是它是从右边开始进行分割。
+返回值：
+
+split() 返回分割后的字符串列表。
+rsplit() 也返回分割后的字符串列表，但是是从右边开始分割。
+————————————————————————————————————————————————————————————————
+text = "apple,orange,banana,grape"
+
+# 使用逗号分割字符串
+result_split = text.split(',')
+print(result_split)  # ['apple', 'orange', 'banana', 'grape']
+
+result_rsplit = text.rsplit(',', 2)  # 从右边开始分割，最多分割2次
+print(result_rsplit)  # ['apple,orange', 'banana', 'grape']
