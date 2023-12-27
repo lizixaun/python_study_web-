@@ -1,0 +1,15 @@
+json格式转换
+import json
+
+data = {
+    "book_id": b_id,
+    "cid": f"{b_id}|{cid}",
+    "need_bookinfo": 1
+}
+data_json = json.dumps(data)
+这段代码是将一个Python字典 data 转换为 JSON 格式的字符串。它包含了以下键值对：
+
+"book_id"：对应变量 b_id 的值。
+"cid"：对应由 b_id 和 cid 组合而成的字符串。
+"need_bookinfo"：值为 1，表示需要书籍信息。
+————————————————————————————————————————————————————————————————————————————————————————————————————-

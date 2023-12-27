@@ -1,25 +1,21 @@
-from http import cookies
-from http import client
-from urllib import request
+import aiohttp
+import asyncio
+urls={
 
-# 你提供的 Accept-Encoding 和 Accept-Language 信息
-accept_encoding = 'gzip, deflate, br'
-accept_language = 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'
-
-# 解析 Accept-Encoding 头信息
-parsed_encoding = [encoding.strip() for encoding in accept_encoding.split(',')]
-print("Accept-Encoding翻译成中文为：")
-for encoding in parsed_encoding:
-    if encoding == 'gzip':
-        print("gzip（gzip压缩）")
-    elif encoding == 'deflate':
-        print("deflate（deflate压缩）")
-    elif encoding == 'br':
-        print("br（Brotli压缩）")
-
-# 解析 Accept-Language 头信息
-parsed_languages = [lang.strip() for lang in accept_language.split(',')]
-print("\nAccept-Language翻译成中文为：")
-for lang in parsed_languages:
-    language, _, priority = lang.partition(';')
-    print(f"{language} 的优先级为 {priority if priority else '1'}")
+}
+async def download(url):
+    name=1
+    async with aiohttp.ClientSession as session:
+        async with session.get(url) as resp:
+            with open(name,mode="wb")as f :
+                f.write(await resp.content.read())
+async def main():
+    task=[]
+    for url in urls:
+        b=asyncio.create_task(download(url))
+        task.append(b)
+    await asyncio.wait(task)
+if __name__ == '__main__':
+    # asyncio.run(main())
+    loop=asyncio.get_event_loop()
+    loop.run_until_complete(main())
