@@ -4,9 +4,15 @@
 #2.想办法把参数进行加密（必须参考网易的逻辑），params->encText，encSecKey->encSeckey
 #3.请求到网易，拿到评论信息
 # url="https://music.163.com/weapi/comment/resource/comments/get?csrf_token=ce24f899914b2aa549183800105e8bfdhttps://music.163.com/weapi/comment/resource/comments/get?csrf_token=ce24f899914b2aa549183800105e8bfd"
+import json
+
+import requests
+
 url="https://music.163.com/weapi/comment/resource/comments/get?csrf_token="#模拟未登录状态
-#安装pycrypto
-from
+#安装pycrypto,或者安装pip install pycryptodome两个库效果差不多
+from Crypto.Cipher import AES
+from base64 import b64encode#得到字节序列对象，加密之后，得到的东西计算机看不懂，所以改成字节序列对象
+
 #请求方式post
 #====================================================================================
 #详细过程
@@ -136,7 +142,7 @@ def get_encSeckey():
 """
 function b(a, b) {  #a是要加密的内容
         var c = CryptoJS.enc.Utf8.parse(b)  #c跟b是一回事，但是我们不知道c是什么
-          , d = CryptoJS.enc.Utf8.parse("0102030405060708")
+          , d = CryptoJS.enc.Utf8.parse("0102030405060708")#偏移量
           , e = CryptoJS.enc.Utf8.parse(a)  #e是a的数据
           , f = CryptoJS.AES.encrypt(e, c, {    #AES加密：里面丢了一个e,c,{}.这个三个东西 #c是加密的密钥，往回推b就是加密的密钥
             iv: d,          #偏移量
@@ -149,6 +155,23 @@ function b(a, b) {  #a是要加密的内容
 def get_params(data):
     first=enc_params(data,g)
     second=enc_params(first,i)
+    return second   #返回的就是params,因为得到e,e就是a，a就是要加密的nr
 #下面这个代码 需要 搞定function b
+def to_16(data):
+    pad=16-len(data) %16
+    data +=chr(pad)*pad
+    return data
 def enc_params(data,key):#加密过程
-    pass
+    iv="0102030405060708"
+    data=to_16(data)
+    #先造一个可以加密的工具arg,也就是argument（自变量）
+    aes=AES.new(key=key.encode("utf-8"),IV=iv.encode("utf-8"),mode=AES.MODE_CBC)#创建加密器#ctrl+单击#因为本来是字符串但是要字节，所以要.encode("utf-8")，字节就是utf-8
+    bs=aes.encrypt(data.encode("utf-8"))#加密，加密内容长度必须是16的倍数
+    #加密之后我们需要return f.toString()转化成字符串，但是我们直接bs.decode是不行的，因为decode必须要有“utf-8",但是结果无法被utf-8识别，
+    #所以我们需要模块from base64 import b64encode
+    return str(b64encode(bs),"utf-8")#再变成字符串
+resp=requests.post(url,data={
+    "params":get_params(json.dumps(data)),
+    "encSeckey":get_encSeckey()
+})
+print(resp.text)
