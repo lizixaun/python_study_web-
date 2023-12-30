@@ -152,7 +152,7 @@ function b(a, b) {  #a是要加密的内容
 """
 #         h.encText = b(d, g),   #g是密钥，因为g是b，我们知道g的值
 #         h.encText = b(h.encText, i),#i也是密钥
-def get_params(data):
+def get_params(data):#因为就这个data是会变的，所以我们就把这个data设置为定值
     first=enc_params(data,g)
     second=enc_params(first,i)
     return second   #返回的就是params,因为得到e,e就是a，a就是要加密的nr
