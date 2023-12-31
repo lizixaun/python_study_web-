@@ -7,7 +7,7 @@ from base64 import b64encode
 import requests
 import json
 from Crypto.Cipher import AES
-url="https://music.163.com/weapi/comment/resource/comments/get?csrf_token="
+url="https://music.163.com/weapi/comment/resource/comments/get?csrf_token=ce24f899914b2aa549183800105e8bfd"
 # 请求方式是POST
 data={
 "csrf_token": "ce24f899914b2aa549183800105e8bfd",
@@ -16,16 +16,16 @@ data={
 "orderType": "1",
 "pageNo": "1",
 "pageSize": "20",
-"rid": "R_SO_4_2096798000",
-"threadId": "R_SO_4_2096798000"
+"rid": "R_SO_4_2111993259",
+"threadId": "R_SO_4_2111993259"
 }
 #服务于d的
-f="00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7"
+f='00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7'
 g="0CoJUm6Qyw8W8jud"
 e="010001"
-i="n1r9sfgIOmxV6ykF"#手动固定的->人家函数中是随机的
+i="1QMLVDkXuLIq28hR"#手动固定的->人家函数中是随机的
 def get_encSeckey():#由于i是固定的，那么encSeckey就是固定的，c()函数的结果就是固定的
-    return "7fed8e963fc540092cb0d6a6ac89dfeb12cbc0f0e80e098509b61dcc62f35c7b83c8dc230ca220cdfe0201e199d3661a48c19be2b0c81dca548cc9368c141f41c230f2302490a903e37516bdd3da6ed6f2621f408e9bb77350a55f541873cab7577357bbada92dd0d66be54c665f1d88db56dad40efe94090d2138ec90e219b4"
+    return "8d4de59ff4bfbd2d805e0ef83670c2c3c27a4f87f5072c98db8550fd723a2f94d958b4ca8bd97a688c5bb1ff150d0f27f9ea79c46c64201b35746bea0b11b24acda60c9fa896c81bd718c67075ce725325caa2306b75641e4c387420cdd5cb6f79ff7a3e7aaf9fea4d8a713c2877cef52b204e02ed6fb9639bae34a4ec467fc0"
 def get_params(data):#默认这里接收到的就是字符串
     first=enc_params(data,g)
     second=enc_params(first,i)
@@ -83,6 +83,6 @@ function d(d, e, f, g) { // d:数据，e: 010001，f: 很长，g: 0CoJUm6Qyw8W8j
 #发送请求，得到评论结果
 resp=requests.post(url,data={
     "params":get_params(json.dumps(data)),
-    "encSeckey":get_encSeckey()
+    "encSecKey":get_encSeckey()
 })
 print(resp.text)

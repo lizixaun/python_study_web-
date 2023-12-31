@@ -127,10 +127,10 @@ e="010001"
  #        e = encryptedString(d, a)
  #    }
 #我们将断点设置到i后面，最后一个函数前面也就是（图片"E:\study_web\第三章\综合训练\图片理解\得到随机数的断点设置.jpg"）然后得到i数据图片（E:\study_web\第三章\综合训练\图片理解\得到i图片.png）,
-i="n1r9sfgIOmxV6ykF"
+i="ejG8pbW5LgEDBZ2i"
 #然后我们再次设置函数后面再次设置断点（此时fuction已经跑完），前面的断点不要放全部不要放。断点全部留，保证是get不然失效了，又得下一个轮回。视频讲解断点断点要怎么不会跑掉（）
 def get_encSeckey():
-    return "7fed8e963fc540092cb0d6a6ac89dfeb12cbc0f0e80e098509b61dcc62f35c7b83c8dc230ca220cdfe0201e199d3661a48c19be2b0c81dca548cc9368c141f41c230f2302490a903e37516bdd3da6ed6f2621f408e9bb77350a55f541873cab7577357bbada92dd0d66be54c665f1d88db56dad40efe94090d2138ec90e219b4"
+    return "6de8d870f1147fd5fc7a1051421543b7703b40e799c72d918b25ff94a7df9df31416704b39f52dd5c31eb9ee560a229e5c902be822545d5689b26e2fe406745962df31eea2c6e6b7f1e2d202088470110349660d2e4223b48c3132b130070332549b7fcaf4b7ed7c9e91384ed0ce248288c6d9f3e00113a5d9dd7433febe5592"
 #——————————————————————————————————————————————————————————-----
 #接下来就只有剩下两行了，
 #         h.encText = b(d, g),
