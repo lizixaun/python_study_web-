@@ -13,3 +13,14 @@ data_json = json.dumps(data)
 "cid"：对应由 b_id 和 cid 组合而成的字符串。
 "need_bookinfo"：值为 1，表示需要书籍信息。
 ————————————————————————————————————————————————————————————————————————————————————————————————————-
+strip；夺去，剥夺,抹去
+    text = "   Hello, world!   "
+    stripped_text = text.strip()
+    print(stripped_text)  # 输出：Hello, world!
+---------------------------------------------------
+split:（使）分开
+    text = "apple,banana,orange"
+    fruits = text.split(',')  # 使用逗号作为分隔符
+    print(fruits)  # 输出：['apple', 'banana', 'orange']
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————-
+视频拼接：见Noenote
