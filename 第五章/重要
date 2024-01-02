@@ -1,1 +1,27 @@
 无法修改属性名字，显示文件已经开始运行。因为有很多文件在运行这个文件，最好的解决方式：发送到钉钉，然后直接删除，再次下载的时候可以选择文件名字
+-------------------------------------------------------------------------------------------------------------------
+查找修改
+from selenium.webdriver.common.by import By
+# inputTag = driver.find_element_by_id("value")  # 利用ID查找
+# 改为：
+inputTag = driver.find_element(By.ID, "value")
+
+# inputTags = driver.find_element_by_class_name("value")  # 利用类名查找
+# 改为：
+inputTag = driver.find_element(By.CLASS_NAME, "value")
+
+# inputTag = driver.find_element_by_name("value")  # 利用name属性查找
+# 改为：
+inputTag = driver.find_element(By.NAME, "value")
+
+# inputTag = driver.find_element_by_tag_name("value")  # 利用标签名查找
+# 改为：
+inputTag = driver.find_element(By.TAG_NAME, "value")
+
+# inputTag = driver.find_element_by_xpath("value")  # 利用xpath查找
+# 改为：
+inputTag = driver.find_element(By.XPATH, "value")
+
+# inputTag = driver.find_element_by_css_selector("value")  # 利用CSS选择器查找
+# 改为：
+inputTag = driver.find_element(By.CSS_SELECTOR, "value")

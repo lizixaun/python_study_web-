@@ -13,4 +13,6 @@ from selenium.webdriver import Edge
 web = Edge()
 #2.打开一个网站
 web.get("http://www.baidu.com")
+# input("按下 Enter 键以关闭程序...")  # 程序将在按下 Enter 后继续执行并关闭,加一个input，可以让软件不自动关闭
+print(web.title)
 
