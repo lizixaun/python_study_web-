@@ -1,4 +1,4 @@
-#有时候报错，多开几个页面#还是用xpath的当前位置吧，不然太容易报错了1.当前定位锁定框架2.其他方式查找位置
+#有时候报错，多开几个页面#还是用xpath的当前位置吧，不然太容易报错了1.(锁定当前框架之前我们需要做一个事情也就是需要先 使用selenium登录网页，拿到自动化的网页代码)当前定位锁定框架2.其他方式查找位置
 from selenium.webdriver import Edge
 from selenium.webdriver.common.by import By#common共同的，共享的；常见的，普遍的
 from selenium.webdriver.common.keys import Keys

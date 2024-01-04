@@ -1,0 +1,7 @@
+from chaojiying import Chaojiying_Client
+img=web.find_element(By.XPATH,'/html/body/div[3]/div/div[3]/div[1]/form/div/img').screenshot_as_png#screenshot截屏成png
+chaojiying = Chaojiying_Client('3105489241', '047973lzx', '914467')
+dic=chaojiying.PostPic(img, 1902)
+#我们运行chaojiyinf得到{'err_no': 0, 'err_str': 'OK', 'pic_id': '1237420061274780001', 'pic_str': '7261', 'md5': 'b73789916ad1ab81bcd64e05f7ef76be'}
+#我们需要pic_str里面的内容
+verify=dic['pic_str']
