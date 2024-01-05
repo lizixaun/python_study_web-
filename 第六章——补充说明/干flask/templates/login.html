@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>          <!--这里写/longin说明请求就到longin函数里面  -->                  <!--form是将全部东西打包，因为我们这边需要将密码和账号打包，一起发送给服务器-->
+    <form action="/longin" method="post"><!-- method请求方式，post隐式提交，get显示提交显示提交一般百度，显示代表直接将我们提交的内容显示到网站上面，就是网站最后乱七八糟的东西，-->
+        <!---->
+        用户名 <input type="text" name="username" ><!--框框的写法input:text+tab--><!--起个名字，让电脑知道谁是谁,接收到字典-->
+        密码 <input type="password" name="pwd" ><!--input:pass-->
+        <input type="submit" value="登录"><!--input:sub-->
+        {{msg}}
+    </form>
+</body>
+</html>

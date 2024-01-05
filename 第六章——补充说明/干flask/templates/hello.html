@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <a href="#">  {{jay}}</a><!-- 注释href="#"是超链接,     #接收从flask传送过来的数据jay-->
+  <hr/>
+    {{lst}}<!-- 接收lst(列表)-->
+  <hr/>
+{% for item in lst %}<!-- html的for循环 -->
+  我最喜欢：{{item}}         <!-- 这么做可以让数据像新闻一样好看点（图片：新闻图片） -->
+{% endfor %}
+</body>
+</html>
