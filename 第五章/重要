@@ -27,3 +27,4 @@ inputTag = driver.find_element(By.XPATH, "value")
 # inputTag = driver.find_element_by_css_selector("value")  # 利用CSS选择器查找
 # 改为：
 inputTag = driver.find_element(By.CSS_SELECTOR, "value")
+#
