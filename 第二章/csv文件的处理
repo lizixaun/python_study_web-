@@ -1,0 +1,25 @@
+#对与csv文件读取pandas更简单
+file_path = "数据.csv"
+with open(file_path, mode="r", encoding="utf-8") as file:
+    # 逐行读取 CSV 文件
+    for line in file:
+        # 在这里处理每一行的数据
+        print(line.strip())  # strip() 方法用于去除每行结尾的换行符或空白字符
+#--------------------------------------------------------------------------
+import pandas as pd
+
+file_path = "数据.csv"
+data = pd.read_csv(file_path)
+print(data)
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————-
+pandas对csv文件的处理    1.改行列索引名字
+                        data=pd.read_csv("数据.csv")
+                            # print(data)
+                            data=data.rename(columns={"3":"name","2":"value"}#其实这个是数据自己的功能
+                        --------------------------------
+                        2.将内容改为索引，去掉表头，加上一个去内容需要的部分
+                        df=pd.read_csv("data.csv",header=None,index_col=0)
+                        red_ball=df.loc[:,1:5]
+                        ----------------------------------------
+                        3.pandas只处理内容                  数据.里面的内容。压平为一维数组
+                        red_ball_count=pd.value_counts(red_ball.values.flatten())#pandas帮我们统计内容个数，本来里面只需写red_ball就可以了，但是这个函数只可以统计一维的数据，我们这个数据有行有列，属于二维数据#处理一下

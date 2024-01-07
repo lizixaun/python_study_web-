@@ -1,0 +1,29 @@
+from flask import Flask,render_template
+app=Flask(__name__)#创建网页
+@app.route("/")
+def 随便():
+     return render_template("文件名")#1.打开文件，传入数据的比如return render_template("文件名"，data=data)前面这个data可以随便取名字#2.html需要在templates这个文件夹里面
+                                    #3html接收数据是:{{data}}
+if __name__ == '__main__':
+    app.run()
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#注意点1.如何改为字典形式2.怎么改列索引头
+------------
+echart1.需要先到官网，找例图https://echarts.apache.org/examples/zh/index.html#chart-type-bar
+2.看代码，找series里面的data,还有最大最小的定量（这边可以查看：干flask\templates\show.html）
+3.先在html里面引入echart（查看show.html里面的6.7行），然后看echart教程，从第二步，开始因为我们已经引入地址（引入的https://www.bootcdn.cn/这里找我们需要的）
+4.先将发送端的python文件里面处理数据
+5.接收{{数据|tojson}}#加上tojson的原因是因为python文件的字典都是有""号，与html冲突，转为json两个都有的就不冲突了
+-----------------------------------------------------------------------------------------------------------------
+from flask import Flask,render_template
+import pandas as pd#要使用pandas引入数据
+app=Flask(__name__)#创建网页
+@app.route("/")
+def 随便():
+    #处理数据1.需要先在原来数据的基础上第一行加上2，3不然没有列索引，我们的思路是将列索引为名，开始改我们的数据
+     data=pd.read_csv("数据.csv")
+     data=data.rename(columns={"3":"name","2":"value"})#接下来将列索引改名字
+     data=data.to_dict(orient="records")#看to_list文档，里面有写这种格式，需要怎么改#我们需要的可以通过对比html得到data: [{value: 335, name: 'Direct'},{},{}]
+     return render_template("文件名",data=data)#接收data
+if __name__ == '__main__':
+    app.run()

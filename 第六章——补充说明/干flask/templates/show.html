@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入echarts,一般到https://www.bootcdn.cn/echarts/这个网站搜索-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.2.1-rc1/echarts.min.js"></script>
+</head>
+<body>
+
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+     <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+      // 指定图表的配置项和数据
+   option = {
+  backgroundColor: '#2c343c',
+  title: {
+    text: 'Customized Pie',
+    left: 'center',
+    top: 20,
+    textStyle: {
+      color: '#ccc'
+    }
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  visualMap: {
+    show: false,
+    min: 8,<!-- 这个数据也得改，不然数据太多了，电影观看人数多，超出去会变成白色的-->
+    max: 600000,
+    inRange: {
+      colorLightness: [0, 1]
+    }
+  },
+  //一般series里面直接改data，就可以改变数据
+  series: [
+    {
+      name: 'Access From',
+      type: 'pie',
+      radius: '55%',
+      center: ['50%', '50%'],
+        <!-- 改数据就完事-->
+         <!-- 加tojson是因为我们直接data接收的化，会让python的格式不兼容，找一个兼容点就可以了（因为python的字典有加上“”号）-->
+      data: {{data|tojson}}.sort(function (a, b) {
+        return a.value - b.value;
+      }),
+      roseType: 'radius',
+      label: {
+        color: 'rgba(255, 255, 255, 0.3)'
+      },
+      labelLine: {
+        lineStyle: {
+          color: 'rgba(255, 255, 255, 0.3)'
+        },
+        smooth: 0.2,
+        length: 10,
+        length2: 20
+      },
+      itemStyle: {
+        color: '#c23531',
+        shadowBlur: 200,
+        shadowColor: 'rgba(0, 0, 0, 0.5)'
+      },
+      animationType: 'scale',
+      animationEasing: 'elasticOut',
+      animationDelay: function (idx) {
+        return Math.random() * 200;
+      }
+    }
+  ]
+};
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    </script>
+</body>
+</html>
